@@ -70,6 +70,7 @@ local GROUND_LOOPING_POINT = 514
 local scrolling = true
 
 function love.load()
+    paused = false
     -- initialize our nearest-neighbor filter
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
@@ -113,7 +114,14 @@ function love.keypressed(key)
     
     if key == 'escape' then
         love.event.quit()
+    elseif key == 'p' then
+      if paused == false then
+         paused = true
+      else
+         paused = false
+      end
     end
+
 end
 
 --[[
@@ -129,16 +137,18 @@ function love.keyboard.wasPressed(key)
 end
 
 function love.update(dt)
-    -- update background and ground scroll offsets
-    backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) % 
-        BACKGROUND_LOOPING_POINT
-    groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % GROUND_LOOPING_POINT
+    if not paused then
+      -- update background and ground scroll offsets
+      backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) % 
+          BACKGROUND_LOOPING_POINT
+      groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % GROUND_LOOPING_POINT
 
-    -- now, we just update the state machine, which defers to the right state
-    gStateMachine:update(dt)
+      -- now, we just update the state machine, which defers to the right state
+      gStateMachine:update(dt)
 
-    -- reset input table
-    love.keyboard.keysPressed = {}
+      -- reset input table
+      love.keyboard.keysPressed = {}
+    end
 end
 
 function love.draw()

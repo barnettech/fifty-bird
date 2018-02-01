@@ -26,7 +26,7 @@ function ScoreState:update(dt)
 end
 
 function ScoreState:render()
-    img = love.graphics.newImage("flappy4MedalsSprite.jpeg")
+    img = love.graphics.newImage("flappy4MedalsSprite.png")
  
   -- Let's say we want to display only the top-left 
   -- 32x32 quadrant of the Image:
@@ -57,7 +57,7 @@ function ScoreState:render()
       love.graphics.printf('You won a silver medal!', 0, 120, VIRTUAL_WIDTH, 'center')
       love.graphics.draw(img, top_right, 220, 200)
     else
-      love.graphics.printf('You won a gold medal!', 0, 120, VIRTUAL_WIDTH, 'center')
+      love.graphics.printf('Well only kind of lost, you won a gold medal!', 0, 120, VIRTUAL_WIDTH, 'center')
       love.graphics.draw(img, bottom_left, 220, 200)
     end
    
