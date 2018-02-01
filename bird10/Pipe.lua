@@ -19,7 +19,7 @@ PIPE_SPEED = 60
 
 -- height of pipe image, globally accessible
 PIPE_HEIGHT = 430
-PIPE_WIDTH = 70
+PIPE_WIDTH = 170
 
 function Pipe:init(orientation, y)
     self.x = VIRTUAL_WIDTH

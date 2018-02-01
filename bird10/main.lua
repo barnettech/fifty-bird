@@ -69,6 +69,8 @@ local GROUND_LOOPING_POINT = 514
 -- scrolling variable to pause the game when we collide with a pipe
 local scrolling = true
 
+math.randomseed(os.time())
+
 function love.load()
     paused = false
     -- initialize our nearest-neighbor filter
